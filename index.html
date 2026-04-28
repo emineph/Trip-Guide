@@ -1,0 +1,1206 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Japonya Gezi Rehberi 🇯🇵</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --red: #C0392B;
+    --crimson: #8B0000;
+    --pale: #FDF6F0;
+    --ink: #1A1A2E;
+    --gold: #C9A84C;
+    --blush: #F5D0C5;
+    --mist: #E8EEF4;
+    --sakura: #FFB7C5;
+    --pine: #2D5016;
+    --sky: #87CEEB;
+  }
+ 
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+ 
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--pale);
+    color: var(--ink);
+    overflow-x: hidden;
+  }
+ 
+  /* ─── HERO ─── */
+  .hero {
+    position: relative;
+    height: 100vh;
+    min-height: 640px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: linear-gradient(160deg, #0D0D1A 0%, #1A0A0A 50%, #2C0D0D 100%);
+  }
+ 
+  .hero-bg {
+    position: absolute; inset: 0;
+    background-image:
+      radial-gradient(ellipse 60% 40% at 80% 20%, rgba(192,57,43,0.25) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 60% at 20% 80%, rgba(201,168,76,0.15) 0%, transparent 60%);
+  }
+ 
+  /* Mount Fuji SVG */
+  .fuji-wrap {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    pointer-events: none;
+  }
+ 
+  /* Torii gate */
+  .torii-wrap {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0.12;
+    pointer-events: none;
+  }
+ 
+  /* Sakura petals */
+  .petal {
+    position: absolute;
+    width: 8px; height: 10px;
+    background: var(--sakura);
+    border-radius: 50% 0 50% 0;
+    opacity: 0.6;
+    animation: fall linear infinite;
+  }
+ 
+  @keyframes fall {
+    0%   { transform: translateY(-20px) rotate(0deg); opacity: 0.8; }
+    100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+  }
+ 
+  .hero-content {
+    position: relative;
+    text-align: center;
+    z-index: 10;
+    animation: fadeUp 1.2s ease both;
+  }
+ 
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+ 
+  .jp-title {
+    font-family: 'Noto Serif JP', serif;
+    font-size: clamp(48px, 8vw, 96px);
+    color: var(--red);
+    letter-spacing: 0.2em;
+    line-height: 1;
+    text-shadow: 0 0 60px rgba(192,57,43,0.5);
+    margin-bottom: 8px;
+  }
+ 
+  .jp-subtitle {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(22px, 4vw, 42px);
+    color: rgba(255,255,255,0.9);
+    font-style: italic;
+    letter-spacing: 0.05em;
+  }
+ 
+  .jp-meta {
+    margin-top: 24px;
+    display: flex;
+    gap: 32px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+ 
+  .jp-meta span {
+    font-size: 13px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    background: rgba(201,168,76,0.1);
+    border: 1px solid rgba(201,168,76,0.3);
+    padding: 6px 16px;
+    border-radius: 2px;
+  }
+ 
+  .scroll-hint {
+    position: absolute;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: rgba(255,255,255,0.4);
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    animation: bounce 2s infinite;
+  }
+ 
+  @keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50%       { transform: translateX(-50%) translateY(8px); }
+  }
+ 
+  /* ─── ROUTE OVERVIEW ─── */
+  .section { padding: 80px 40px; max-width: 1100px; margin: 0 auto; }
+ 
+  .section-label {
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 12px;
+  }
+ 
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 4vw, 48px);
+    color: var(--ink);
+    margin-bottom: 48px;
+    line-height: 1.2;
+  }
+ 
+  /* Route visual */
+  .route-visual {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    margin-bottom: 60px;
+    overflow-x: auto;
+    padding-bottom: 16px;
+  }
+ 
+  .route-city {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-shrink: 0;
+  }
+ 
+  .route-dot {
+    width: 48px; height: 48px;
+    border-radius: 50%;
+    background: var(--red);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    box-shadow: 0 0 0 6px rgba(192,57,43,0.15);
+    transition: transform 0.2s;
+    cursor: default;
+  }
+ 
+  .route-dot:hover { transform: scale(1.15); }
+ 
+  .route-dot.start { background: var(--pine); box-shadow: 0 0 0 6px rgba(45,80,22,0.15); }
+  .route-dot.end   { background: var(--gold); box-shadow: 0 0 0 6px rgba(201,168,76,0.2); }
+ 
+  .route-name {
+    margin-top: 8px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--ink);
+    text-align: center;
+    letter-spacing: 0.05em;
+  }
+ 
+  .route-days {
+    font-size: 10px;
+    color: var(--red);
+    margin-top: 2px;
+    letter-spacing: 0.08em;
+  }
+ 
+  .route-line {
+    flex: 1;
+    min-width: 32px;
+    height: 2px;
+    background: linear-gradient(90deg, var(--red), rgba(192,57,43,0.3));
+    position: relative;
+    top: -20px;
+  }
+ 
+  .route-line::after {
+    content: '▶';
+    position: absolute;
+    right: -6px;
+    top: -10px;
+    color: var(--red);
+    font-size: 10px;
+    opacity: 0.5;
+  }
+ 
+  /* ─── TIMELINE ─── */
+  .timeline { position: relative; }
+ 
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 52px;
+    top: 0; bottom: 0;
+    width: 2px;
+    background: linear-gradient(180deg, var(--red) 0%, var(--gold) 100%);
+  }
+ 
+  .day-card {
+    display: grid;
+    grid-template-columns: 104px 1fr;
+    gap: 0;
+    margin-bottom: 32px;
+    animation: slideIn 0.5s ease both;
+  }
+ 
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateX(-20px); }
+    to   { opacity: 1; transform: translateX(0); }
+  }
+ 
+  .day-number {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 4px;
+    position: relative;
+    z-index: 1;
+  }
+ 
+  .day-circle {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    background: var(--red);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    font-weight: 700;
+    flex-shrink: 0;
+    box-shadow: 0 2px 12px rgba(192,57,43,0.4);
+  }
+ 
+  .day-circle.special { background: var(--gold); }
+  .day-circle.arrival { background: var(--pine); }
+ 
+  .day-date-small {
+    font-size: 10px;
+    color: #888;
+    margin-top: 6px;
+    text-align: center;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+  }
+ 
+  .day-body {
+    background: white;
+    border-radius: 12px;
+    padding: 24px 28px;
+    margin-left: 24px;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.06);
+    border-left: 4px solid var(--red);
+    position: relative;
+    transition: box-shadow 0.2s, transform 0.2s;
+  }
+ 
+  .day-body:hover {
+    box-shadow: 0 8px 40px rgba(0,0,0,0.12);
+    transform: translateY(-2px);
+  }
+ 
+  .day-body.special { border-left-color: var(--gold); }
+  .day-body.arrival { border-left-color: var(--pine); }
+ 
+  .day-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+  }
+ 
+  .day-city {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    color: var(--ink);
+  }
+ 
+  .day-theme-badge {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    background: var(--pale);
+    border: 1px solid rgba(0,0,0,0.08);
+    color: #666;
+    padding: 4px 12px;
+    border-radius: 20px;
+    white-space: nowrap;
+  }
+ 
+  .activities-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 10px;
+    margin-top: 12px;
+  }
+ 
+  .activity-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 10px 12px;
+    background: var(--pale);
+    border-radius: 8px;
+    font-size: 13px;
+    color: #444;
+    line-height: 1.4;
+  }
+ 
+  .activity-icon {
+    font-size: 16px;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+ 
+  .day-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid rgba(0,0,0,0.06);
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+ 
+  .hotel-info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: #666;
+  }
+ 
+  .budget-badge {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--red);
+    background: rgba(192,57,43,0.08);
+    padding: 4px 12px;
+    border-radius: 20px;
+    letter-spacing: 0.05em;
+  }
+ 
+  .budget-badge.gold {
+    color: #8B6914;
+    background: rgba(201,168,76,0.15);
+  }
+ 
+  /* ─── MAP SECTION ─── */
+  .map-section {
+    background: var(--ink);
+    padding: 80px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+ 
+  .map-section::before {
+    content: '日本';
+    position: absolute;
+    right: -40px; top: 20px;
+    font-family: 'Noto Serif JP', serif;
+    font-size: 200px;
+    color: rgba(255,255,255,0.03);
+    letter-spacing: 0.2em;
+    pointer-events: none;
+  }
+ 
+  .map-inner { max-width: 1100px; margin: 0 auto; }
+ 
+  .map-inner .section-label { color: var(--gold); }
+  .map-inner .section-title { color: white; }
+ 
+  .map-svg-wrap {
+    background: rgba(255,255,255,0.04);
+    border-radius: 16px;
+    padding: 40px;
+    border: 1px solid rgba(255,255,255,0.08);
+    display: flex;
+    justify-content: center;
+  }
+ 
+  /* ─── TIPS ─── */
+  .tips-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 24px;
+  }
+ 
+  .tip-card {
+    background: white;
+    border-radius: 16px;
+    padding: 28px 24px;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.06);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+ 
+  .tip-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+  }
+ 
+  .tip-icon {
+    font-size: 36px;
+    margin-bottom: 16px;
+    display: block;
+  }
+ 
+  .tip-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: var(--ink);
+  }
+ 
+  .tip-text {
+    font-size: 13px;
+    color: #666;
+    line-height: 1.7;
+  }
+ 
+  /* ─── CHECKLIST ─── */
+  .checklist-section {
+    background: linear-gradient(135deg, var(--red) 0%, var(--crimson) 100%);
+    padding: 80px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+ 
+  .checklist-section::after {
+    content: '✈';
+    position: absolute;
+    right: 60px; bottom: -20px;
+    font-size: 180px;
+    opacity: 0.06;
+    pointer-events: none;
+  }
+ 
+  .checklist-inner { max-width: 1100px; margin: 0 auto; }
+  .checklist-inner .section-label { color: rgba(255,255,255,0.6); }
+  .checklist-inner .section-title { color: white; }
+ 
+  .checklist-cols {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 32px;
+  }
+ 
+  .checklist-group h4 {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 14px;
+  }
+ 
+  .check-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    user-select: none;
+  }
+ 
+  .check-box {
+    width: 20px; height: 20px;
+    border: 2px solid rgba(255,255,255,0.4);
+    border-radius: 4px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    background: rgba(255,255,255,0.1);
+  }
+ 
+  .check-item.checked .check-box {
+    background: var(--gold);
+    border-color: var(--gold);
+  }
+ 
+  .check-item.checked .check-box::after {
+    content: '✓';
+    color: white;
+    font-size: 12px;
+    font-weight: 700;
+  }
+ 
+  .check-label {
+    font-size: 14px;
+    color: rgba(255,255,255,0.85);
+    transition: opacity 0.2s;
+  }
+ 
+  .check-item.checked .check-label {
+    opacity: 0.5;
+    text-decoration: line-through;
+  }
+ 
+  /* ─── FOOTER ─── */
+  .footer {
+    background: var(--ink);
+    padding: 48px 40px;
+    text-align: center;
+  }
+ 
+  .footer-jp {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 36px;
+    color: var(--red);
+    margin-bottom: 12px;
+    letter-spacing: 0.3em;
+  }
+ 
+  .footer-text {
+    font-size: 13px;
+    color: rgba(255,255,255,0.4);
+    letter-spacing: 0.1em;
+  }
+ 
+  /* ─── SEPARATOR ─── */
+  .wave-sep {
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+  }
+ 
+  @media (max-width: 640px) {
+    .section { padding: 60px 20px; }
+    .timeline::before { left: 40px; }
+    .day-card { grid-template-columns: 80px 1fr; }
+    .jp-meta { gap: 12px; }
+    .activities-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+ 
+<!-- ═══ HERO ═══ -->
+<section class="hero">
+  <div class="hero-bg"></div>
+ 
+  <!-- Sakura petals -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const hero = document.querySelector('.hero');
+      for (let i = 0; i < 18; i++) {
+        const p = document.createElement('div');
+        p.className = 'petal';
+        p.style.cssText = `
+          left: ${Math.random()*100}%;
+          animation-duration: ${4 + Math.random()*6}s;
+          animation-delay: ${Math.random()*5}s;
+          width: ${6+Math.random()*8}px;
+          height: ${7+Math.random()*10}px;
+          opacity: ${0.3+Math.random()*0.5};
+        `;
+        hero.appendChild(p);
+      }
+    });
+  </script>
+ 
+  <!-- Fuji silhouette -->
+  <div class="fuji-wrap">
+    <svg viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+      <defs>
+        <linearGradient id="fujiGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#fff" stop-opacity="0.08"/>
+          <stop offset="100%" stop-color="#fff" stop-opacity="0.02"/>
+        </linearGradient>
+      </defs>
+      <!-- Fuji shape -->
+      <polygon points="720,30 540,220 380,280 1060,280 900,220" fill="url(#fujiGrad)"/>
+      <!-- Snow cap -->
+      <polygon points="720,30 675,120 765,120" fill="rgba(255,255,255,0.15)"/>
+      <!-- Water/ground -->
+      <rect x="0" y="280" width="1440" height="40" fill="rgba(135,206,235,0.08)"/>
+      <!-- Trees silhouette -->
+      <path d="M0 300 Q80 260 160 290 Q240 260 320 285 Q400 260 480 282 Q560 260 640 278 Q720 260 800 278 Q880 260 960 282 Q1040 260 1120 285 Q1200 260 1280 290 Q1360 260 1440 300 L1440 320 L0 320Z" fill="rgba(45,80,22,0.3)"/>
+    </svg>
+  </div>
+ 
+  <!-- Torii -->
+  <div class="torii-wrap">
+    <svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="10" y="40" width="180" height="16" rx="4" fill="#C0392B"/>
+      <rect x="20" y="56" width="160" height="10" rx="3" fill="#C0392B"/>
+      <rect x="40" y="66" width="16" height="134" rx="4" fill="#C0392B"/>
+      <rect x="144" y="66" width="16" height="134" rx="4" fill="#C0392B"/>
+      <rect x="48" y="90" width="104" height="8" rx="3" fill="#C0392B"/>
+    </svg>
+  </div>
+ 
+  <div class="hero-content">
+    <div class="jp-title">日本</div>
+    <div class="jp-subtitle">Japonya Gezi Rehberi</div>
+    <div class="jp-meta">
+      <span>✈ 10 Temmuz · Ankara Kalkış</span>
+      <span>🛬 11 Temmuz 21:00 · Haneda Varış</span>
+      <span>🛫 20 Temmuz 09:00 · Dönüş</span>
+    </div>
+  </div>
+ 
+  <div class="scroll-hint">↓ &nbsp; aşağı kaydır</div>
+</section>
+ 
+<!-- ═══ ROTA ═══ -->
+<section class="section">
+  <div class="section-label">Genel Bakış</div>
+  <div class="section-title">9 Gün, 4 Şehir, Sonsuz Anı</div>
+ 
+  <div class="route-visual">
+    <div class="route-city">
+      <div class="route-dot start">✈</div>
+      <div class="route-name">Ankara</div>
+      <div class="route-days">10 Tem</div>
+    </div>
+    <div class="route-line"></div>
+    <div class="route-city">
+      <div class="route-dot">🗼</div>
+      <div class="route-name">Tokyo</div>
+      <div class="route-days">11–14 Tem</div>
+    </div>
+    <div class="route-line"></div>
+    <div class="route-city">
+      <div class="route-dot">🌋</div>
+      <div class="route-name">Hakone</div>
+      <div class="route-days">15 Tem</div>
+    </div>
+    <div class="route-line"></div>
+    <div class="route-city">
+      <div class="route-dot">⛩</div>
+      <div class="route-name">Kyoto</div>
+      <div class="route-days">16–17 Tem</div>
+    </div>
+    <div class="route-line"></div>
+    <div class="route-city">
+      <div class="route-dot">🦌</div>
+      <div class="route-name">Nara</div>
+      <div class="route-days">18 Tem</div>
+    </div>
+    <div class="route-line"></div>
+    <div class="route-city">
+      <div class="route-dot end">🍜</div>
+      <div class="route-name">Osaka</div>
+      <div class="route-days">18–20 Tem</div>
+    </div>
+  </div>
+ 
+  <!-- ─── TIMELINE ─── -->
+  <div class="timeline" id="timeline">
+ 
+    <!-- DAY 1 -->
+    <div class="day-card">
+      <div class="day-number">
+        <div class="day-circle arrival">1</div>
+        <div class="day-date-small">11 Tem<br>Cuma</div>
+      </div>
+      <div class="day-body arrival">
+        <div class="day-header">
+          <div class="day-city">🛬 Tokyo — Varış Günü</div>
+          <div class="day-theme-badge">Haneda Havalimanı</div>
+        </div>
+        <div class="activities-grid">
+          <div class="activity-item"><span class="activity-icon">🚃</span>Haneda → Shinjuku Keikyu / Tokyo Monorail</div>
+          <div class="activity-item"><span class="activity-icon">🏨</span>Otel check-in, bagaj bırak</div>
+          <div class="activity-item"><span class="activity-icon">🌙</span>Shinjuku ışıkları & yürüyüş</div>
+          <div class="activity-item"><span class="activity-icon">🍜</span>İlk Japon yemeği: ramen veya izakaya</div>
+          <div class="activity-item"><span class="activity-icon">🏪</span>Convenience store keşfi (Lawson / 7-Eleven)</div>
+          <div class="activity-item"><span class="activity-icon">💤</span>Erken yat! Jet lag'e dikkat</div>
+        </div>
+        <div class="day-footer">
+          <div class="hotel-info">🏨 Shinjuku bölgesi önerilir (Park Hyatt / Granbell)</div>
+          <div class="budget-badge">¥ 5,000–8,000</div>
+        </div>
+      </div>
+    </div>
+ 
+    <!-- DAY 2 -->
+    <div class="day-card">
+      <div class="day-number">
+        <div class="day-circle">2</div>
+        <div class="day-date-small">12 Tem<br>Cumartesi</div>
+      </div>
+      <div class="day-body">
+        <div class="day-header">
+          <div class="day-city">🗼 Tokyo I — Pop Kültürü</div>
+          <div class="day-theme-badge">Harajuku · Shibuya · Akihabara</div>
+        </div>
+        <div class="activities-grid">
+          <div class="activity-item"><span class="activity-icon">⛩</span>Meiji Jingu Tapınağı (sabah erken)</div>
+          <div class="activity-item"><span class="activity-icon">🛍</span>Harajuku Takeshita Caddesi</div>
+          <div class="activity-item"><span class="activity-icon">👗</span>Omotesando lüks alışveriş</div>
+          <div class="activity-item"><span class="activity-icon">🚦</span>Shibuya Kavşağı (dünyanın en yoğunu!)</div>
+          <div class="activity-item"><span class="activity-icon">🌆</span>Shibuya Sky gözlem terası</div>
+          <div class="activity-item"><span class="activity-icon">🎮</span>Akihabara gece turu & manga</div>
+        </div>
+        <div class="day-footer">
+          <div class="hotel-info">🏨 Shinjuku / Shibuya bölgesi</div>
+          <div class="budget-badge">¥ 12,000–18,000</div>
+        </div>
+      </div>
+    </div>
+ 
+    <!-- DAY 3 -->
+    <div class="day-card">
+      <div class="day-number">
+        <div class="day-circle">3</div>
+        <div class="day-date-small">13 Tem<br>Pazar</div>
+      </div>
+      <div class="day-body">
+        <div class="day-header">
+          <div class="day-city">🏯 Tokyo II — Kültür & Tarih</div>
+          <div class="day-theme-badge">Asakusa · Ueno · Skytree</div>
+        </div>
+        <div class="activities-grid">
+          <div class="activity-item"><span class="activity-icon">🏮</span>Senso-ji Tapınağı — sabah 06:00'da git!</div>
+          <div class="activity-item"><span class="activity-icon">🛒</span>Nakamise Alışveriş Sokağı</div>
+          <div class="activity-item"><span class="activity-icon">📡</span>Tokyo Skytree (önceden bilet al!)</div>
+          <div class="activity-item"><span class="activity-icon">🎨</span>Ueno Parkı & Tokyo Ulusal Müzesi</div>
+          <div class="activity-item"><span class="activity-icon">🍣</span>Tsukiji dış pazar sabah kahvaltısı</div>
+          <div class="activity-item"><span class="activity-icon">🌸</span>Sumida Nehri yürüyüşü</div>
+        </div>
+        <div class="day-footer">
+          <div class="hotel-info">🏨 Asakusa / Shinjuku bölgesi</div>
+          <div class="budget-badge">¥ 15,000–22,000</div>
+        </div>
+      </div>
+    </div>
+ 
+    <!-- DAY 4 -->
+    <div class="day-card">
+      <div class="day-number">
+        <div class="day-circle">4</div>
+        <div class="day-date-small">14 Tem<br>Pazartesi</div>
+      </div>
+      <div class="day-body">
+        <div class="day-header">
+          <div class="day-city">⛩ Nikko — UNESCO Mirası</div>
+          <div class="day-theme-badge">Günübirlik · 2 saat uzaklık</div>
+        </div>
+        <div class="activities-grid">
+          <div class="activity-item"><span class="activity-icon">🚄</span>Asakusa'dan Nikko'ya Tobu tren (2 saat)</div>
+          <div class="activity-item"><span class="activity-icon">🏛</span>Tosho-gu Tapınak Kompleksi</div>
+          <div class="activity-item"><span class="activity-icon">🙈</span>Üç Maymun kabartması (görme, işitme, konuşma)</div>
+          <div class="activity-item"><span class="activity-icon">💧</span>Kegon Şelalesi (97 m yükseklik!)</div>
+          <div class="activity-item"><span class="activity-icon">🦢</span>Chuzenji Gölü</div>
+          <div class="activity-item"><span class="activity-icon">🌲</span>Yomeimon Kapısı</div>
+        </div>
+        <div class="day-footer">
+          <div class="hotel-info">🏨 Tokyo'ya dönüş (akşam)</div>
+          <div class="budget-badge">¥ 18,000–25,000</div>
+        </div>
+      </div>
+    </div>
+ 
+    <!-- DAY 5 -->
+    <div class="day-card">
+      <div class="day-number">
+        <div class="day-circle">5</div>
+        <div class="day-date-small">15 Tem<br>Salı</div>
+      </div>
+      <div class="day-body">
+        <div class="day-header">
+          <div class="day-city">🌋 Hakone — Fuji & Onsen</div>
+          <div class="day-theme-badge">Ryokan · Onsen · Fuji Manzarası</div>
+        </div>
+        <div class="activities-grid">
+          <div class="activity-item"><span class="activity-icon">🚅</span>Shinkansen ile Odawara (35 dk)</div>
+          <div class="activity-item"><span class="activity-icon">🎨</span>Hakone Açık Hava Müzesi (Picasso eserleri!)</div>
+          <div class="activity-item"><span class="activity-icon">⛵</span>Ashi Gölü tekne turu</div>
+          <div class="activity-item"><span class="activity-icon">🗻</span>Fuji Dağı manzarası (hava açıksa ihtişamlı)</div>
+          <div class="activity-item"><span class="activity-icon">🛁</span>Onsen ryokan deneyimi — bir gece kal!</div>
+          <div class="activity-item"><span class="activity-icon">🍱</span>Kaiseki akşam yemeği (ryokan dahil)</div>
+        </div>
+        <div class="day-footer">
+          <div class="hotel-info">🏨 Hakone Ryokan — Fujiya Hotel veya benzeri (onsen dahil)</div>
+          <div class="budget-badge gold">¥ 35,000–55,000 ⭐</div>
+        </div>
+      </div>
+    </div>
+ 
+    <!-- DAY 6 -->
+    <div class="day-card">
+      <div class="day-number">
+        <div class="day-circle">6</div>
+        <div class="day-date-small">16 Tem<br>Çarşamba</div>
+      </div>
+      <div class="day-body">
+        <div class="day-header">
+          <div class="day-city">🏯 Kyoto I — Geisha Şehri</div>
+          <div class="day-theme-badge">Arashiyama · Gion · Nishiki</div>
+        </div>
+        <div class="activities-grid">
+          <div class="activity-item"><span class="activity-icon">🚄</span>Shinkansen Kyoto'ya (2.5 saat)</div>
+          <div class="activity-item"><span class="activity-icon">🎋</span>Arashiyama Bambu Korusu — SABAH ERKEN!</div>
+          <div class="activity-item"><span class="activity-icon">🌿</span>Tenryu-ji Bahçesi (UNESCO)</div>
+          <div class="activity-item"><span class="activity-icon">👘</span>Gion bölgesi yürüyüşü (geisha şansı!)</div>
+          <div class="activity-item"><span class="activity-icon">🐟</span>Nishiki Pazarı — Kyoto'nun mutfağı</div>
+          <div class="activity-item"><span class="activity-icon">🌙</span>Pontocho sokağı gece yemeği</div>
+        </div>
+        <div class="day-footer">
+          <div class="hotel-info">🏨 Gion / Kyoto İstasyon yakını</div>
+          <div class="budget-badge">¥ 20,000–35,000</div>
+        </div>
+      </div>
+    </div>
+ 
+    <!-- DAY 7 -->
+    <div class="day-card">
+      <div class="day-number">
+        <div class="day-circle">7</div>
+        <div class="day-date-small">17 Tem<br>Perşembe</div>
+      </div>
+      <div class="day-body">
+        <div class="day-header">
+          <div class="day-city">⛩ Kyoto II — Torii & Altın Köşk</div>
+          <div class="day-theme-badge">Fushimi · Kinkaku-ji · Nijo</div>
+        </div>
+        <div class="activities-grid">
+          <div class="activity-item"><span class="activity-icon">🦊</span>Fushimi Inari — SABAH 06:00 (kalabalık yok!)</div>
+          <div class="activity-item"><span class="activity-icon">🥇</span>Kinkaku-ji (Altın Köşk)</div>
+          <div class="activity-item"><span class="activity-icon">🪨</span>Ryoan-ji Zen Bahçesi (taş bahçe)</div>
+          <div class="activity-item"><span class="activity-icon">🏯</span>Nijo Kalesi (ıslıklı zemin!)</div>
+          <div class="activity-item"><span class="activity-icon">🍵</span>Uji bölgesi — matcha deneyimi</div>
+          <div class="activity-item"><span class="activity-icon">🛍</span>Kyoto çömlek & el sanatı alışverişi</div>
+        </div>
+        <div class="day-footer">
+          <div class="hotel-info">🏨 Kyoto merkez</div>
+          <div class="budget-badge">¥ 14,000–20,000</div>
+        </div>
+      </div>
+    </div>
+ 
+    <!-- DAY 8 -->
+    <div class="day-card">
+      <div class="day-number">
+        <div class="day-circle">8</div>
+        <div class="day-date-small">18 Tem<br>Cuma</div>
+      </div>
+      <div class="day-body">
+        <div class="day-header">
+          <div class="day-city">🦌 Nara → Osaka</div>
+          <div class="day-theme-badge">Geyikler · Buda · Dotonbori</div>
+        </div>
+        <div class="activities-grid">
+          <div class="activity-item"><span class="activity-icon">🦌</span>Nara Parkı — özgür geyikler!</div>
+          <div class="activity-item"><span class="activity-icon">🏛</span>Todai-ji (Japonya'nın en büyük Buda'sı)</div>
+          <div class="activity-item"><span class="activity-icon">🛤</span>Nara → Osaka (Kintetsu, 45 dk)</div>
+          <div class="activity-item"><span class="activity-icon">🐙</span>Dotonbori'de takoyaki dene!</div>
+          <div class="activity-item"><span class="activity-icon">🍳</span>Okonomiyaki (Osaka usulü)</div>
+          <div class="activity-item"><span class="activity-icon">🌃</span>Dotonbori gece manzarası</div>
+        </div>
+        <div class="day-footer">
+          <div class="hotel-info">🏨 Osaka / Dotonbori yakını (Cross Hotel / Dormy Inn)</div>
+          <div class="budget-badge">¥ 16,000–24,000</div>
+        </div>
+      </div>
+    </div>
+ 
+    <!-- DAY 9 -->
+    <div class="day-card">
+      <div class="day-number">
+        <div class="day-circle">9</div>
+        <div class="day-date-small">19 Tem<br>Cumartesi</div>
+      </div>
+      <div class="day-body">
+        <div class="day-header">
+          <div class="day-city">🏯 Osaka — Kale & Lezzet</div>
+          <div class="day-theme-badge">Osaka Kalesi · Kuromon · Shinsekai</div>
+        </div>
+        <div class="activities-grid">
+          <div class="activity-item"><span class="activity-icon">🏯</span>Osaka Kalesi sabah ziyareti</div>
+          <div class="activity-item"><span class="activity-icon">🛒</span>Kuromon Ichiba açık hava pazarı</div>
+          <div class="activity-item"><span class="activity-icon">🗼</span>Tsutenkaku Kulesi & Shinsekai bölgesi</div>
+          <div class="activity-item"><span class="activity-icon">🏬</span>Umeda bölgesi alışveriş</div>
+          <div class="activity-item"><span class="activity-icon">🎮</span>Denden Town (elektronik & anime)</div>
+          <div class="activity-item"><span class="activity-icon">🥩</span>Son gece: Yakiniku veya kaiseki</div>
+        </div>
+        <div class="day-footer">
+          <div class="hotel-info">🏨 Osaka merkez (havalimanına yakın tercih et)</div>
+          <div class="budget-badge">¥ 18,000–28,000</div>
+        </div>
+      </div>
+    </div>
+ 
+    <!-- DAY 10 - DEPARTURE -->
+    <div class="day-card">
+      <div class="day-number">
+        <div class="day-circle special">↩</div>
+        <div class="day-date-small">20 Tem<br>Pazar</div>
+      </div>
+      <div class="day-body special">
+        <div class="day-header">
+          <div class="day-city">🛫 Dönüş Günü</div>
+          <div class="day-theme-badge">09:00 Kalkış · KIX Havalimanı</div>
+        </div>
+        <div class="activities-grid">
+          <div class="activity-item"><span class="activity-icon">⏰</span>Otel check-out 06:00–06:30</div>
+          <div class="activity-item"><span class="activity-icon">🚌</span>Kansai Havalimanı transfer (1–1.5 saat)</div>
+          <div class="activity-item"><span class="activity-icon">🛄</span>En az 3 saat önceden havalimanında ol!</div>
+          <div class="activity-item"><span class="activity-icon">🛍</span>Duty-free son alışveriş</div>
+          <div class="activity-item"><span class="activity-icon">🎁</span>Hediye bavulunu kontrol et: Kit Kat, matcha, sake</div>
+          <div class="activity-item"><span class="activity-icon">✈</span>Hayırlı yolculuklar! いってらっしゃい</div>
+        </div>
+        <div class="day-footer">
+          <div class="hotel-info">⚠️ 09:00 uçuş = çok erken kalk!</div>
+          <div class="budget-badge gold">¥ 3,000–5,000</div>
+        </div>
+      </div>
+    </div>
+ 
+  </div>
+</section>
+ 
+<!-- ═══ MAP ═══ -->
+<section class="map-section">
+  <div class="map-inner">
+    <div class="section-label">Güzergah Haritası</div>
+    <div class="section-title">Japonya'daki Yolculuğun</div>
+    <div class="map-svg-wrap">
+      <svg viewBox="0 0 500 600" width="100%" max-width="500" style="max-width:480px;" xmlns="http://www.w3.org/2000/svg">
+        <!-- Japan rough outline -->
+        <defs>
+          <filter id="glow">
+            <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+            <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+        </defs>
+ 
+        <!-- Honshu rough shape -->
+        <path d="M200,80 Q220,60 250,70 Q280,75 300,100 Q330,130 340,160 Q360,200 350,240 Q345,270 330,290 Q310,320 290,350 Q270,380 260,420 Q250,450 240,470 Q230,490 220,500 Q210,490 205,470 Q200,450 210,420 Q220,390 230,360 Q240,330 245,300 Q248,270 240,250 Q230,220 220,200 Q210,180 205,160 Q195,130 195,100 Z" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.15)" stroke-width="1.5"/>
+ 
+        <!-- Kyushu rough -->
+        <path d="M160,430 Q170,420 185,415 Q200,415 210,430 Q220,445 215,460 Q205,475 190,480 Q175,480 165,465 Q155,448 160,430Z" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+ 
+        <!-- Hokkaido rough -->
+        <path d="M280,30 Q300,15 330,20 Q360,28 370,55 Q375,75 360,90 Q340,100 310,95 Q285,85 278,60 Q274,42 280,30Z" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+ 
+        <!-- Route line -->
+        <polyline points="258,185, 258,220, 258,268, 235,340, 215,395, 195,430" 
+                  stroke="var(--gold)" stroke-width="2" fill="none" 
+                  stroke-dasharray="6,4" opacity="0.7" filter="url(#glow)"/>
+ 
+        <!-- City dots & labels -->
+        <!-- Tokyo/Haneda -->
+        <circle cx="268" cy="185" r="10" fill="var(--red)" filter="url(#glow)"/>
+        <circle cx="268" cy="185" r="16" fill="rgba(192,57,43,0.2)"/>
+        <text x="285" y="182" fill="white" font-size="13" font-family="'Playfair Display', serif">Tokyo</text>
+        <text x="285" y="196" fill="rgba(255,255,255,0.5)" font-size="9" font-family="DM Sans">🛬 Haneda · 11 Tem</text>
+ 
+        <!-- Nikko -->
+        <circle cx="285" cy="155" r="6" fill="#C9A84C" opacity="0.8"/>
+        <text x="294" y="158" fill="rgba(255,255,255,0.7)" font-size="10" font-family="DM Sans">Nikko</text>
+ 
+        <!-- Hakone -->
+        <circle cx="250" cy="220" r="7" fill="var(--red)" opacity="0.85"/>
+        <text x="260" y="224" fill="rgba(255,255,255,0.8)" font-size="11" font-family="'Playfair Display', serif">Hakone 🌋</text>
+ 
+        <!-- Kyoto -->
+        <circle cx="230" cy="268" r="9" fill="var(--red)" filter="url(#glow)"/>
+        <circle cx="230" cy="268" r="15" fill="rgba(192,57,43,0.2)"/>
+        <text x="155" y="265" fill="white" font-size="13" font-family="'Playfair Display', serif">Kyoto</text>
+        <text x="155" y="278" fill="rgba(255,255,255,0.5)" font-size="9" font-family="DM Sans">16–17 Tem</text>
+ 
+        <!-- Nara -->
+        <circle cx="220" cy="295" r="6" fill="#C9A84C" opacity="0.8"/>
+        <text x="228" y="298" fill="rgba(255,255,255,0.7)" font-size="10" font-family="DM Sans">Nara 🦌</text>
+ 
+        <!-- Osaka -->
+        <circle cx="210" cy="320" r="9" fill="var(--gold)" filter="url(#glow)"/>
+        <circle cx="210" cy="320" r="15" fill="rgba(201,168,76,0.2)"/>
+        <text x="135" y="317" fill="white" font-size="13" font-family="'Playfair Display', serif">Osaka</text>
+        <text x="135" y="330" fill="rgba(255,255,255,0.5)" font-size="9" font-family="DM Sans">🛫 20 Tem 09:00</text>
+ 
+        <!-- Fuji icon -->
+        <text x="290" y="240" font-size="22" opacity="0.4">🗻</text>
+ 
+        <!-- Compass -->
+        <g transform="translate(440, 70)">
+          <circle r="22" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+          <text x="-4" y="-10" fill="rgba(255,255,255,0.6)" font-size="10" font-weight="bold">N</text>
+          <line x1="0" y1="-6" x2="0" y2="6" stroke="rgba(255,255,255,0.4)" stroke-width="1"/>
+          <line x1="-6" y1="0" x2="6" y2="0" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+        </g>
+      </svg>
+    </div>
+  </div>
+</section>
+ 
+<!-- ═══ TIPS ═══ -->
+<section class="section">
+  <div class="section-label">Pratik Bilgiler</div>
+  <div class="section-title">Japonya'da İşe Yarayacaklar</div>
+  <div class="tips-grid">
+    <div class="tip-card">
+      <span class="tip-icon">💳</span>
+      <div class="tip-title">Suica / IC Kart</div>
+      <p class="tip-text">Haneda'da ilk iş olarak IC kart al. Metro, shinkansen, mağaza ve hatta bazı restoran ödemelerinde kullanılıyor. Yüklenebilir, pratik.</p>
+    </div>
+    <div class="tip-card">
+      <span class="tip-icon">💴</span>
+      <div class="tip-title">Nakit Kraldır</div>
+      <p class="tip-text">Japonya hâlâ nakit ağırlıklı. 7-Eleven ATM'leri yabancı kart kabul eder. Havalimanı kuru kötüdür — Japan Post ATM daha avantajlı.</p>
+    </div>
+    <div class="tip-card">
+      <span class="tip-icon">📱</span>
+      <div class="tip-title">SIM & Uygulama</div>
+      <p class="tip-text">Havalimanında data SIM kart al (IIJmio, IHG). Google Maps Japonya'da mükemmel. Hyperdia tren saatleri, Tabelog restoran için şart.</p>
+    </div>
+    <div class="tip-card">
+      <span class="tip-icon">🚄</span>
+      <div class="tip-title">JR Pass</div>
+      <p class="tip-text">Shinkansen çok kullanacaksan 7 veya 14 günlük Japan Rail Pass Türkiye'den önceden al! Japonya'da satılmıyor artık.</p>
+    </div>
+    <div class="tip-card">
+      <span class="tip-icon">🙅</span>
+      <div class="tip-title">Bahşiş Yok!</div>
+      <p class="tip-text">Japonya'da bahşiş vermek nezaketsizlik sayılabilir. Ödeme yaptın, bititti. Teşekkür edip çıkabilirsin.</p>
+    </div>
+    <div class="tip-card">
+      <span class="tip-icon">🏪</span>
+      <div class="tip-title">Convenience Store</div>
+      <p class="tip-text">7-Eleven ve Lawson için sever seversin. Onigiri, sıcak yemek, taze sandviç, kahve, ATM — hepsi burada. Sabah kahvaltısı için harika.</p>
+    </div>
+    <div class="tip-card">
+      <span class="tip-icon">⏰</span>
+      <div class="tip-title">Erken Kalk</div>
+      <p class="tip-text">Senso-ji, Fushimi Inari, Arashiyama Bambu — hepsine 06:00–07:00'da git. Kalabalıktan önce görmen hem fotoğrafik hem ruhani.</p>
+    </div>
+    <div class="tip-card">
+      <span class="tip-icon">🌡</span>
+      <div class="tip-title">Temmuz Havası</div>
+      <p class="tip-text">Temmuz Japonya'da sıcak ve nemli (30–35°C). Bol su iç, şapka tak. Ağırlıklı sabah aktivitesi planla, öğlen dinlen.</p>
+    </div>
+  </div>
+</section>
+ 
+<!-- ═══ CHECKLIST ═══ -->
+<section class="checklist-section">
+  <div class="checklist-inner">
+    <div class="section-label">Hazırlık Listesi</div>
+    <div class="section-title">Uçmadan Önce</div>
+    <div class="checklist-cols">
+      <div class="checklist-group">
+        <h4>Belgeler & Biletler</h4>
+        <div class="check-item" onclick="this.classList.toggle('checked')">
+          <div class="check-box"></div>
+          <span class="check-label">Pasaport (6 ay geçerli)</span>
+        </div>
+        <div class="check-item" onclick="this.classList.toggle('checked')">
+          <div class="check-box"></div>
+          <span class="check-label">Japonya'ya uçak bileti</span>
+        </div>
+        <div class="check-item" onclick="this.classList.toggle('checked')">
+          <div class="check-box"></div>
+          <span class="check-label">JR Pass (Türkiye'den satın al!)</span>
+        </div>
+        <div class="check-item" onclick="this.classList.toggle('checked')">
+          <div class="check-box"></div>
+          <span class="check-label">Otel rezervasyonları</span>
+        </div>
+        <div class="check-item" onclick="this.classList.toggle('checked')">
+          <div class="check-box"></div>
+          <span class="check-label">Seyahat sigortası</span>
+        </div>
+        <div class="check-item" onclick="this.classList.toggle('checked')">
+          <div class="check-box"></div>
+          <span class="check-label">Skytree & Fushimi Inari biletleri (önceden)</span>
+        </div>
+      </div>
+      <div class="checklist-group">
+        <h4>Teknoloji & Para</h4>
+        <div class="check-item" onclick="this.classList.toggle('checked')">
+          <div class="check-box"></div>
+          <span class="check-label">Japonya adaptörü (Type A)</span>
+        </div>
+        <div class="check-item" onclick="this.classList.toggle('checked')">
+          <div class="check-box"></div>
+          <span class="check-label">Dolar/Euro bozuk yedek nakit</span>
+        </div>
+        <div class="check-item" onclick="this.classList.toggle('checked')">
+          <div class="check-box"></div>
+          <span class="check-label">Google Translate offline Japonca paketi</span>
+        </div>
+        <div class="check-item" onclick="this.classList.toggle('checked')">
+          <div class="check-box"></div>
+          <span class="check-label">Powerbank (tam dolu)</span>
+        </div>
+        <div class="check-item" onclick="this.classList.toggle('checked')">
+          <div class="check-box"></div>
+          <span class="check-label">Hyperdia & Tabelog uygulamaları</span>
+        </div>
+      </div>
+      <div class="checklist-group">
+        <h4>Kıyafet & Aksesuar</h4>
+        <div class="check-item" onclick="this.classList.toggle('checked')">
+          <div class="check-box"></div>
+          <span class="check-label">Rahat yürüyüş ayakkabısı</span>
+        </div>
+        <div class="check-item" onclick="this.classList.toggle('checked')">
+          <div class="check-box"></div>
+          <span class="check-label">Hafif yağmurluk / şemsiye</span>
+        </div>
+        <div class="check-item" onclick="this.classList.toggle('checked')">
+          <div class="check-box"></div>
+          <span class="check-label">Güneş kremi (SPF50+)</span>
+        </div>
+        <div class="check-item" onclick="this.classList.toggle('checked')">
+          <div class="check-box"></div>
+          <span class="check-label">Tapınaklar için uygun kıyafet</span>
+        </div>
+        <div class="check-item" onclick="this.classList.toggle('checked')">
+          <div class="check-box"></div>
+          <span class="check-label">Küçük bez çanta (hediye alışverişi için)</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<!-- ═══ FOOTER ═══ -->
+<footer class="footer">
+  <div class="footer-jp">いってらっしゃい</div>
+  <div class="footer-text">İyi yolculuklar! • Japonya seni bekliyor • 11–20 Temmuz 2025</div>
+</footer>
+ 
+<script>
+  // Stagger animation on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        entry.target.style.animationDelay = (i * 0.1) + 's';
+        entry.target.style.opacity = '1';
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+ 
+  document.querySelectorAll('.day-card').forEach(el => {
+    el.style.opacity = '0';
+    observer.observe(el);
+  });
+ 
+  document.querySelectorAll('.tip-card').forEach(el => {
+    el.style.opacity = '0';
+    observer.observe(el);
+  });
+</script>
+ 
+</body>
+</html>
